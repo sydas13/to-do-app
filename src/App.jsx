@@ -1,7 +1,8 @@
+import Header from "./components/Header";
 function App() {
   return (
     <>
-      <h1 className="text-4xl font-bold text-red-900"> do app</h1>
+      <Header></Header>
     </>
   );
 }
