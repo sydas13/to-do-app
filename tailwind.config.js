@@ -2,6 +2,9 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      header: ["Fjalla One", "serif"],
+    },
     extend: {},
   },
   plugins: [],
