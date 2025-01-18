@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       header: ["Fjalla One", "serif"],
+      form: ["Share Tech Mono", "serif"],
     },
     extend: {},
   },
