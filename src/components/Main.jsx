@@ -1,7 +1,8 @@
+import flamingo from "../assets/flamingo.svg";
 export default function Main() {
   return (
-    <main className="w-screen mt-10 grid grid-cols-2 ">
-      <form className="shadow-lg shadow-slate-700 hover:shadow rounded-md px-7 py-7 flex flex-col space-y-7 font-form text-xl ml-10  bg-purple-100 border-2 border-red-600 hover:border max-w-[500px] min-w-[300px]">
+    <main className="w-screen mt-10 ">
+      <form className="sliding-window shadow-lg shadow-slate-700 hover:shadow rounded-md px-7 py-7 flex flex-col space-y-7 font-form text-xl ml-10  bg-purple-100 border-2 border-red-600 hover:border max-w-[500px] min-w-[300px]">
         <div className="flex flex-row items-center justify-start space-x-2">
           <label className="font-bold text-red-700" htmlFor="todo-name">
             Task:
@@ -75,8 +76,17 @@ export default function Main() {
             <input type="file" id="file" className=""></input>
           </label>
         </div>
+        <button type="submit" className="bg-blue-300">
+          Submit
+        </button>
       </form>
-      <div></div>
+      <div className="hidden bg-slate-300 shadow-xl h-[173px] w-[500px] mx-auto rounded-2xl relative mt-28">
+        <img
+          src={flamingo}
+          placeholder="flamingo"
+          className="absolute w-20 h-20 top-[-4.6rem]"
+        ></img>
+      </div>
     </main>
   );
 }
