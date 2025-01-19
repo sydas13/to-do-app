@@ -1,6 +1,6 @@
 export default function Form() {
   return (
-    <form className="sliding-window shadow-lg shadow-slate-700 hover:shadow rounded-md px-7 py-7 hidden flex-col space-y-7 font-form text-xl mx-auto mb-10 sm:ml-7  bg-purple-100 border-2 border-red-600 hover:border w-[50%] max-w-[400px] min-w-[330px]">
+    <form className="shadow-lg shadow-slate-700 hover:shadow rounded-md p-7 flex flex-col space-y-7 font-form text-xl mb-10 sm:ml-7  bg-purple-100 border-2 border-red-600 hover:border w-[50%] max-w-[400px] min-w-[330px] max-h-[600px]">
       <div className="flex flex-row items-center justify-start space-x-2">
         <label className="font-bold text-red-700" htmlFor="todo-name">
           Task:
@@ -107,7 +107,7 @@ export default function Form() {
       </div>
       <button
         type="submit"
-        className="bg-blue-300 h-10 w-[50%] mx-auto rounded-md border-2 border-blue-700 hover:border-0"
+        className="bg-blue-300 h-10 w-[50%] mx-auto rounded-md border-2 border-blue-700 hover:border-0 "
       >
         Submit
       </button>
