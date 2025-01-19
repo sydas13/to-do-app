@@ -1,6 +1,6 @@
 export default function Form() {
   return (
-    <form className="sliding-window shadow-lg shadow-slate-700 hover:shadow rounded-md px-7 py-7 flex flex-col space-y-7 font-form text-xl mx-auto mb-10 sm:ml-7  bg-purple-100 border-2 border-red-600 hover:border w-[50%] max-w-[400px] min-w-[330px]">
+    <form className="sliding-window shadow-lg shadow-slate-700 hover:shadow rounded-md px-7 py-7 hidden flex-col space-y-7 font-form text-xl mx-auto mb-10 sm:ml-7  bg-purple-100 border-2 border-red-600 hover:border w-[50%] max-w-[400px] min-w-[330px]">
       <div className="flex flex-row items-center justify-start space-x-2">
         <label className="font-bold text-red-700" htmlFor="todo-name">
           Task:
