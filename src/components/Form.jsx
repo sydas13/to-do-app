@@ -1,6 +1,9 @@
-export default function Form() {
+export default function Form({ handleSubmit }) {
   return (
-    <form className="shadow-lg shadow-slate-700 hover:shadow rounded-md p-7 flex flex-col space-y-7 font-form text-xl mb-10 sm:ml-7  bg-purple-100 border-2 border-red-600 hover:border w-[50%] max-w-[400px] min-w-[330px] max-h-[600px]">
+    <form
+      className="shadow-lg shadow-slate-700 hover:shadow rounded-md p-7 flex flex-col space-y-7 font-form text-xl mb-10  bg-purple-100 border-2 border-red-600 hover:border w-[50%] max-w-[400px] min-w-[330px] max-h-[600px]"
+      onSubmit={handleSubmit}
+    >
       <div className="flex flex-row items-center justify-start space-x-2">
         <label className="font-bold text-red-700" htmlFor="todo-name">
           Task:
@@ -36,7 +39,7 @@ export default function Form() {
         <select
           className="border-2 rounded-md text-lg py-2 px-4"
           id="priority"
-          name="priority"
+          name="todo-priority"
         >
           <option value="low">Low</option>
           <option value="medium">Medium</option>
@@ -49,7 +52,7 @@ export default function Form() {
         </label>
         <input
           id="date"
-          name="date"
+          name="todo-date"
           className="border-2 rounded-md text-lg px-3 py-2"
           type="date"
         ></input>
@@ -61,7 +64,7 @@ export default function Form() {
         <input
           id="time"
           defaultValue="14:30"
-          name="time"
+          name="todo-time"
           className="border-2 rounded-md text-lg px-3 py-2"
           type="time"
         ></input>
@@ -71,7 +74,7 @@ export default function Form() {
         <div className="flex flex-row space-x-2 mx-0">
           <input
             type="radio"
-            name="category"
+            name="todo-category"
             id="work"
             value="work"
             className=""
@@ -83,7 +86,7 @@ export default function Form() {
         <div className="flex flex-row space-x-2 mx-0">
           <input
             type="radio"
-            name="category"
+            name="todo-category"
             id="personal"
             value="personal"
             className=""
@@ -95,7 +98,7 @@ export default function Form() {
         <div className="flex flex-row space-x-2">
           <input
             type="radio"
-            name="category"
+            name="todo-category"
             id="shopping"
             value="shopping"
             className=""
