@@ -14,6 +14,7 @@ export default function Form({ handleSubmit }) {
           id="todo-name"
           name="todo-name"
           className="form-label border-2 rounded-md h-10 px-1 text-base sm:text-lg"
+          required
         ></input>
       </div>
       <div className="flex flex-row space-x-2 items-center justify-start">
@@ -24,6 +25,7 @@ export default function Form({ handleSubmit }) {
           Description:
         </label>
         <textarea
+          required
           rows={2}
           cols={20}
           placeholder="Buy eggs and tofu"
@@ -37,6 +39,7 @@ export default function Form({ handleSubmit }) {
           Priority:
         </label>
         <select
+          required
           className="border-2 rounded-md text-lg py-2 px-4"
           id="priority"
           name="todo-priority"
@@ -51,6 +54,7 @@ export default function Form({ handleSubmit }) {
           Due Date:
         </label>
         <input
+          required
           id="date"
           name="todo-date"
           className="border-2 rounded-md text-lg px-3 py-2"
@@ -62,6 +66,7 @@ export default function Form({ handleSubmit }) {
           Task due at:
         </label>
         <input
+          required
           id="time"
           defaultValue="14:30"
           name="todo-time"
@@ -73,6 +78,7 @@ export default function Form({ handleSubmit }) {
       <div className="flex flex-col  justify-start sm:flex-row sm:space-x-4">
         <div className="flex flex-row space-x-2 mx-0">
           <input
+            required
             type="radio"
             name="todo-category"
             id="work"
@@ -85,6 +91,7 @@ export default function Form({ handleSubmit }) {
         </div>
         <div className="flex flex-row space-x-2 mx-0">
           <input
+            required
             type="radio"
             name="todo-category"
             id="personal"
@@ -97,6 +104,7 @@ export default function Form({ handleSubmit }) {
         </div>
         <div className="flex flex-row space-x-2">
           <input
+            required
             type="radio"
             name="todo-category"
             id="shopping"
