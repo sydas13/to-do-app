@@ -10,11 +10,7 @@ export default function ToDos(props) {
     const dateObj = new Date(date);
     const formatObj = new Intl.DateTimeFormat("en-US", { dateStyle: "long" });
     const dateResult = formatObj.format(dateObj);
-    const [hours, minutes] = time.split(":").map((element) => Number(element));
-    const now = new Date();
-    now.setHours(hours, minutes, 0, 0);
-    const timeResult = now.toTimeString().slice(0, 5);
-    return `Due ${dateResult}, ${timeResult}`;
+    return `Due ${dateResult}, ${time}`;
   };
 
   return (
@@ -37,6 +33,8 @@ export default function ToDos(props) {
           id={props.id}
         ></input>
         <img
+          onClick={props.handleRemove}
+          id={props.id}
           src={deleteBtn}
           aria-placeholder="delete-btn"
           className="w-4 h-4 absolute bottom-2 right-11 cursor-pointer"
