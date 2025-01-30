@@ -1,7 +1,7 @@
 export default function Form({ handleSubmit }) {
   return (
     <form
-      className="shadow-lg shadow-slate-700 hover:shadow rounded-md p-7 flex flex-col space-y-7 font-form text-xl mb-10  bg-purple-100 border-2 border-red-600 hover:border w-[50%] max-w-[400px] min-w-[330px] max-h-[600px]"
+      className="flex todo-form shadow-lg shadow-slate-700 hover:shadow rounded-md p-7 sm:flex flex-col space-y-7 font-form text-xl mb-10  bg-purple-100 border-2 border-red-600 hover:border w-[50%] max-w-[400px] min-w-[300px] max-h-[600px]"
       onSubmit={handleSubmit}
     >
       <div className="flex flex-row items-center justify-start space-x-2">
@@ -118,7 +118,7 @@ export default function Form({ handleSubmit }) {
       </div>
       <button
         type="submit"
-        className="bg-blue-300 h-10 w-[50%] mx-auto rounded-md border-2 border-blue-700 hover:border-0 "
+        className="bg-blue-300 h-10 w-[50%] mx-auto rounded-md border-2 border-blue-700 hover:border-0 py-1"
       >
         Submit
       </button>

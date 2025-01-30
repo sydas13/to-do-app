@@ -3,8 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Form from "./Form";
 import ToDo from "./ToDo";
 
-export default function Main() {
-  const [todos, setTodos] = useState([]);
+export default function Main({ todos, setTodos }) {
   const [filterValue, setFilterValue] = useState("default");
 
   let todoContainer = [];
@@ -48,6 +47,36 @@ export default function Main() {
     } else if (filterValue === "due-date") {
       const todoCopy = [...todos];
       todoCopy.sort((a, b) => a.combinedTime - b.combinedTime);
+      todoContainer = todoCopy.map(
+        (todo) =>
+          !todo.isCompleted && (
+            <ToDo
+              key={todo.id}
+              {...todo}
+              handleComplete={handleComplete}
+              handleRemove={handleRemove}
+            ></ToDo>
+          )
+      );
+    } else if (filterValue === "priority") {
+      const todoCopy = [...todos];
+      todoCopy.sort((a, b) => a.priorityNumber - b.priorityNumber);
+      todoContainer = todoCopy.map(
+        (todo) =>
+          !todo.isCompleted && (
+            <ToDo
+              key={todo.id}
+              {...todo}
+              handleComplete={handleComplete}
+              handleRemove={handleRemove}
+            ></ToDo>
+          )
+      );
+    } else if (filterValue === "priorityAndDueDate") {
+      const todoCopy = [...todos];
+      todoCopy
+        .sort((a, b) => a.combinedTime - b.combinedTime)
+        .sort((a, b) => a.priorityNumber - b.priorityNumber);
       todoContainer = todoCopy.map(
         (todo) =>
           !todo.isCompleted && (
@@ -118,9 +147,10 @@ export default function Main() {
       taskDueDate,
       taskDueTime,
       taskCategory,
-      taskCreated: new Date().getTime(),
       id: uuidv4(),
       combinedTime: combineTimeAndDate(taskDueDate, taskDueTime),
+      priorityNumber:
+        taskPriority === "low" ? 3 : taskPriority === "medium" ? 2 : 1,
     };
 
     setTodos((prev) => [...prev, todo]);
@@ -138,7 +168,7 @@ export default function Main() {
   return (
     <main className="w-screen my-10 flex flex-row mx-auto justify-around">
       <Form handleSubmit={handleSubmit}></Form>
-      <div className="flex flex-col space-y-6 w-[50%]  ">
+      <div className="todo-container-div hidden sm:flex flex-col space-y-6 w-[90%] sm:w-[50%] sm:max-w-[550px] sm:min-w-[300px] ">
         <div className="filter-dropdown-container font-form flex flex-row justify-center items-center space-x-3">
           <label htmlFor="filter-dropdown" className="text-xl font-medium">
             Sort by:
@@ -154,6 +184,8 @@ export default function Main() {
             <option value="shopping">Shopping</option>
             <option value="completed">Completed</option>
             <option value="due-date">Due Date</option>
+            <option value="priority">Priority</option>
+            <option value="priorityAndDueDate">Priority and Due Date</option>
           </select>
         </div>
 
