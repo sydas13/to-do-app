@@ -1,7 +1,7 @@
 export default function Form({ handleSubmit }) {
   return (
     <form
-      className="flex todo-form shadow-lg shadow-slate-700 hover:shadow rounded-md p-7 sm:flex flex-col space-y-7 font-form text-xl mb-10  bg-purple-100 border-2 border-red-600 hover:border sm:w-[60%] md:w-[50%] max-w-[400px] min-w-[300px] max-h-[600px] "
+      className="flex todo-form shadow-lg shadow-slate-700 hover:shadow rounded-md p-7 sm:flex flex-col space-y-7 font-form text-xl mb-10  bg-purple-100 border-2 border-red-600 hover:border sm:w-[60%] md:w-[50%] max-w-[320px] md:max-w-[400px] min-w-[300px] max-h-[600px] "
       onSubmit={handleSubmit}
     >
       <div className="flex flex-row items-center justify-start space-x-2">
