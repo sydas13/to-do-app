@@ -5,15 +5,12 @@ import ToDo from "./ToDo";
 
 export default function Main({ todos, setTodos }) {
   const [filterValue, setFilterValue] = useState(() => {
-    const storedFilterValue = localStorage.getItem("filterValue");
-    return storedFilterValue ? storedFilterValue : "default";
+    return localStorage.getItem("filterValue") || "default";
   });
 
   useEffect(() => {
     localStorage.setItem("filterValue", filterValue);
   });
-
-  let todoContainer = [];
 
   const todoCompleteHtml = `<h1>task completed</h1>`;
   const todoRemovedHtml = `<h1>task removed</h1>`;
@@ -27,88 +24,40 @@ export default function Main({ todos, setTodos }) {
   };
 
   const createTodoContainer = function (todos, filterValue) {
+    let filteredTodos = [...todos];
     if (filterValue === "default") {
-      todoContainer = todos.map(
-        (todo) =>
-          !todo.isCompleted && (
-            <ToDo
-              key={todo.id}
-              {...todo}
-              handleComplete={handleComplete}
-              handleRemove={handleRemove}
-            ></ToDo>
-          )
-      );
+      filteredTodos = filteredTodos.filter((todo) => !todo.isCompleted);
     } else if (filterValue === "completed") {
-      todoContainer = todos.map(
-        (todo) =>
-          todo.isCompleted && (
-            <ToDo
-              key={todo.id}
-              {...todo}
-              handleComplete={handleComplete}
-              handleRemove={handleRemove}
-            ></ToDo>
-          )
-      );
+      filteredTodos = filteredTodos.filter((todo) => todo.isCompleted === true);
     } else if (filterValue === "due-date") {
-      const todoCopy = [...todos];
-      todoCopy.sort((a, b) => a.combinedTime - b.combinedTime);
-      todoContainer = todoCopy.map(
-        (todo) =>
-          !todo.isCompleted && (
-            <ToDo
-              key={todo.id}
-              {...todo}
-              handleComplete={handleComplete}
-              handleRemove={handleRemove}
-            ></ToDo>
-          )
-      );
-    } else if (filterValue === "priority") {
-      const todoCopy = [...todos];
-      todoCopy.sort((a, b) => a.priorityNumber - b.priorityNumber);
-      todoContainer = todoCopy.map(
-        (todo) =>
-          !todo.isCompleted && (
-            <ToDo
-              key={todo.id}
-              {...todo}
-              handleComplete={handleComplete}
-              handleRemove={handleRemove}
-            ></ToDo>
-          )
-      );
-    } else if (filterValue === "priorityAndDueDate") {
-      const todoCopy = [...todos];
-      todoCopy
+      filteredTodos = filteredTodos
         .sort((a, b) => a.combinedTime - b.combinedTime)
-        .sort((a, b) => a.priorityNumber - b.priorityNumber);
-      todoContainer = todoCopy.map(
-        (todo) =>
-          !todo.isCompleted && (
-            <ToDo
-              key={todo.id}
-              {...todo}
-              handleComplete={handleComplete}
-              handleRemove={handleRemove}
-            ></ToDo>
-          )
-      );
+        .filter((todo) => !todo.isCompleted);
+    } else if (filterValue === "priority") {
+      filteredTodos = filteredTodos
+        .sort((a, b) => a.priorityNumber - b.priorityNumber)
+        .filter((todo) => !todo.isCompleted);
+    } else if (filterValue === "priorityAndDueDate") {
+      filteredTodos = filteredTodos
+        .sort((a, b) => a.combinedTime - b.combinedTime)
+        .sort((a, b) => a.priorityNumber - b.priorityNumber)
+        .filter((todo) => !todo.isCompleted);
     } else {
-      todoContainer = todos.map(
-        (todo) =>
-          !todo.isCompleted &&
-          todo.taskCategory === filterValue && (
-            <ToDo
-              key={todo.id}
-              {...todo}
-              handleComplete={handleComplete}
-              handleRemove={handleRemove}
-            ></ToDo>
-          )
+      filteredTodos = filteredTodos.filter(
+        (todo) => todo.taskCategory === filterValue && !todo.isCompleted
       );
     }
+
+    const todoContainer = filteredTodos.map((todo) => (
+      <ToDo
+        key={todo.id}
+        {...todo}
+        handleComplete={handleComplete}
+        handleRemove={handleRemove}
+      ></ToDo>
+    ));
+
+    return todoContainer;
   };
 
   const handleRemove = function (event) {
@@ -116,11 +65,10 @@ export default function Main({ todos, setTodos }) {
     todoParent.innerHTML = todoRemovedHtml;
     todoParent.classList.add("completed-removed");
     const todoId = event.currentTarget.id;
-    console.log(todoId);
+
     setTimeout(() => {
       setTodos((prev) => prev.filter((todo) => todo.id !== todoId));
     }, 4000);
-    console.log(todos);
   };
 
   const handleComplete = function (event) {
@@ -165,11 +113,8 @@ export default function Main({ todos, setTodos }) {
     event.currentTarget.reset();
   };
 
-  createTodoContainer(todos, filterValue);
-
   const handleFilter = function (event) {
     setFilterValue(event.currentTarget.value);
-    createTodoContainer(todos, filterValue);
   };
 
   return (
@@ -197,7 +142,7 @@ export default function Main({ todos, setTodos }) {
           </select>
         </div>
 
-        {todoContainer}
+        {createTodoContainer(todos, filterValue)}
       </div>
     </main>
   );
