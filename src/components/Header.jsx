@@ -3,7 +3,7 @@ import emptyBinder from "../assets/empty binder.svg";
 import filledBinder from "../assets/filled binder.svg";
 export default function Header({ todos, handleBinder }) {
   return (
-    <header className="shadow-md sticky top-0 z-10 bg-white w-full mx-aut h-14 sm:h-28 rounded-md font-header">
+    <header className="shadow-md sticky top-0 z-10 bg-white w-screen mx-aut h-14 sm:h-28 rounded-md font-header">
       <img
         onClick={handleBinder}
         src={todos.length > 0 ? filledBinder : emptyBinder}

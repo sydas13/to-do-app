@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Form from "./Form";
 import ToDo from "./ToDo";
 
 export default function Main({ todos, setTodos }) {
-  const [filterValue, setFilterValue] = useState("default");
+  const [filterValue, setFilterValue] = useState(() => {
+    const storedFilterValue = localStorage.getItem("filterValue");
+    return storedFilterValue ? storedFilterValue : "default";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("filterValue", filterValue);
+  });
 
   let todoContainer = [];
 
@@ -166,14 +173,15 @@ export default function Main({ todos, setTodos }) {
   };
 
   return (
-    <main className="w-screen my-10 flex flex-row mx-auto justify-around">
+    <main className="w-screen my-10 flex flex-row justify-evenly md:justify-around">
       <Form handleSubmit={handleSubmit}></Form>
-      <div className="todo-container-div hidden sm:flex flex-col space-y-6 w-[90%] sm:w-[50%] sm:max-w-[550px] sm:min-w-[300px] ">
+      <div className="todo-container-div hidden sm:flex flex-col space-y-6 w-[90%] sm:w-[40%] md:w-[50%] sm:max-w-[500px] sm:min-w-[300px] ">
         <div className="filter-dropdown-container font-form flex flex-row justify-center items-center space-x-3">
           <label htmlFor="filter-dropdown" className="text-xl font-medium">
             Sort by:
           </label>
           <select
+            value={filterValue}
             className="border-2 bg-slate-300 border-black mx-auto max-w-[200px] rounded-md px-1 py-2 "
             id="filter-dropdown"
             onChange={handleFilter}

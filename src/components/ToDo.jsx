@@ -17,7 +17,7 @@ export default function ToDos(props) {
     <div
       className={`todoContainer ${
         bgColor[props.taskPriority]
-      } w-[90%]  max-w-[330px] sm:max-w-[500px] rounded-md border-2 border-black hover:border-slate-500 mx-auto font-form px-3 pt-2 pb-3 relative`}
+      } w-[90%]  max-w-[330px] sm:max-w-[300px] md:max-w-[500px] rounded-md border-2 border-black hover:border-slate-500 mx-auto font-form px-3 pt-2 pb-3 relative`}
     >
       <div className="flex flex-col space-y-2 ">
         <h1 className="text-xl font-medium">{props.taskName.toUpperCase()}</h1>
@@ -29,7 +29,7 @@ export default function ToDos(props) {
           onClick={props.handleComplete}
           type="checkbox"
           name=""
-          className="absolute bottom-2 right-2 sm:right-4 w-4 h-4 cursor-pointer"
+          className="absolute bottom-2 right-2 w-4 h-4 md:right-3 cursor-pointer"
           id={props.id}
         ></input>
         <img
@@ -37,7 +37,7 @@ export default function ToDos(props) {
           id={props.id}
           src={deleteBtn}
           aria-placeholder="delete-btn"
-          className="w-4 h-4 absolute bottom-2 right-7 sm:right-11 cursor-pointer"
+          className="w-4 h-4 absolute bottom-2 right-7 md:right-11 cursor-pointer"
         ></img>
       </div>
     </div>
