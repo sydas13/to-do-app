@@ -4,4 +4,4 @@ A simple To-Do App that allows users to create tasks with a due date and time an
 
 ## Live Demo
 
-[Click here to visit the project](stop-the-delay.netlify.app)
+[Click here to visit the project](https://stop-the-delay.netlify.app/)
